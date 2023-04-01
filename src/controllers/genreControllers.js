@@ -11,4 +11,11 @@ const getAllGenres = async (_req, res) => {
   res.status(200).send(genresList)
 }
 
-module.exports = { createGenre, getAllGenres }
+const getGenreById = async (req, res) => {
+  const { id } = req.params
+  const genre = await serviceGenre.getById(id)
+  if (!genre) return res.status(404).send('The genre with the given ID does not exist.')
+  res.status(200).send(genre)
+}
+
+module.exports = { createGenre, getAllGenres, getGenreById }

@@ -10,4 +10,9 @@ const getAll = async () => {
   return listGenres
 }
 
-module.exports = { create, getAll }
+const getById = async (id) => {
+  const genre = await Genre.findById(id)
+  return genre
+}
+
+module.exports = { create, getAll, getById }
