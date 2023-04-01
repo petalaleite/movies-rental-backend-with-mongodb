@@ -5,4 +5,9 @@ const create = async (name) => {
   return newGenre
 }
 
-module.exports = { create }
+const getAll = async () => {
+  const listGenres = await Genre.find({}, { __v: 0, _id: 0 }).sort('name')
+  return listGenres
+}
+
+module.exports = { create, getAll }

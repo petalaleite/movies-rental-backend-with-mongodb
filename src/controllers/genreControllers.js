@@ -6,4 +6,9 @@ const createGenre = async (req, res) => {
   res.status(201).send(newGenre)
 }
 
-module.exports = { createGenre }
+const getAllGenres = async (_req, res) => {
+  const genresList = await serviceGenre.getAll()
+  res.status(200).send(genresList)
+}
+
+module.exports = { createGenre, getAllGenres }
