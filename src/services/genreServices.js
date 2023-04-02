@@ -20,4 +20,9 @@ const edit = async (id, name) => {
   return genreUpdated
 }
 
-module.exports = { create, getAll, getById, edit }
+const removeGenre = async (id) => {
+  const genre = await Genre.findByIdAndRemove(id)
+  return genre
+}
+
+module.exports = { create, getAll, getById, edit, removeGenre }

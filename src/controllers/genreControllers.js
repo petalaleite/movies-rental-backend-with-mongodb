@@ -28,4 +28,11 @@ const updateGenre = async (req, res) => {
   res.status(200).send(genre)
 }
 
-module.exports = { createGenre, getAllGenres, getGenreById, updateGenre }
+const removeGenre = async (req, res) => {
+  const { id } = req.params
+  const genre = await serviceGenre.removeGenre(id)
+  if (!genre) return res.status(404).send(INVALID_ID_MESSAGE)
+  return res.status(200).end()
+}
+
+module.exports = { createGenre, getAllGenres, getGenreById, updateGenre, removeGenre }
