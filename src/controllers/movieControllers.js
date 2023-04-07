@@ -6,4 +6,10 @@ const getAllMovies = async (_req, res) => {
   res.status(statusCodes.OK).send(movies)
 }
 
-module.exports = { getAllMovies }
+const createMovie = async (req, res) => {
+  const { title, genreId, numberInStock } = req.body
+  const movie = await movieServices.create(genreId, title, numberInStock)
+  res.status(statusCodes.CREATED).send(movie)
+}
+
+module.exports = { getAllMovies, createMovie }
