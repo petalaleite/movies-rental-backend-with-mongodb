@@ -15,4 +15,9 @@ const getById = async (id) => {
   return customer;
 };
 
-module.exports = { getAll, create, getById };
+const edit = async (id, customer) => {
+  const customerUpdate = await Customer.findByIdAndUpdate(id, { ...customer }, { new: true });
+  return customerUpdate;
+};
+
+module.exports = { getAll, create, getById, edit };
