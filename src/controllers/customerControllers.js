@@ -29,4 +29,11 @@ const editCustomer = async (req, res) => {
   res.status(statusCodes.OK).send(updatedCustomer);
 };
 
-module.exports = { getAllCustomers, createCustomer, getCustomerById, editCustomer };
+const deleteCustomer = async (req, res) => {
+  const { id } = req.params;
+  const customer = await customerServices.deleteCustomer(id);
+  if (!customer) return res.status(statusCodes.NOT_FOUND).send(INVALID_ID_MESSAGE);
+  res.status(statusCodes.OK).send('Successful deletion');
+};
+
+module.exports = { getAllCustomers, createCustomer, getCustomerById, editCustomer, deleteCustomer };

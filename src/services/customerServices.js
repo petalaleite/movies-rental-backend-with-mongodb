@@ -20,4 +20,9 @@ const edit = async (id, customer) => {
   return customerUpdate;
 };
 
-module.exports = { getAll, create, getById, edit };
+const deleteCustomer = async (id) => {
+  const customer = await Customer.findByIdAndRemove(id);
+  return customer;
+};
+
+module.exports = { getAll, create, getById, edit, deleteCustomer };
