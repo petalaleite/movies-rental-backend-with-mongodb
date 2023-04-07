@@ -20,7 +20,7 @@ const create = async (genreId, title, numberInStock) => {
   return movie
 }
 
-update = async (id, movieBody) => {
+const update = async (id, movieBody) => {
   const { genreId, title, numberInStock } = movieBody
   const genre = await Genre.findById(genreId)
   if (!genre) return { status: 400, message: 'Invalid Genre' }
