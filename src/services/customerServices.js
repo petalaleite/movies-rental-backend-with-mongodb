@@ -5,4 +5,9 @@ const getAll = async () => {
   return customers;
 };
 
-module.exports = { getAll };
+const create = async (customer) => {
+  const newCustomer = await Customer.create({ ...customer });
+  return newCustomer;
+};
+
+module.exports = { getAll, create };

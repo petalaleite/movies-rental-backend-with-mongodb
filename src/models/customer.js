@@ -20,7 +20,7 @@ const Customer = model('Customer', new Schema({
   address: {
     type: String,
     required: true,
-    minlength: 20,
+    minlength: 10,
     maxlength: 255
   },
   phone: {
