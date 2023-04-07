@@ -10,4 +10,9 @@ const create = async (customer) => {
   return newCustomer;
 };
 
-module.exports = { getAll, create };
+const getById = async (id) => {
+  const customer = await Customer.findById(id);
+  return customer;
+};
+
+module.exports = { getAll, create, getById };

@@ -8,8 +8,14 @@ const getAllCustomers = async (_req, res) => {
 
 const createCustomer = async (req, res) => {
   const { body } = req;
-  newCustomer = await customerServices.create(body);
+  const newCustomer = await customerServices.create(body);
   res.status(statusCodes.CREATED).send(newCustomer);
 };
 
-module.exports = { getAllCustomers, createCustomer };
+const getCustomerById = async (req, res) => {
+  const { id } = req.params;
+  const customer = await customerServices.getById(id);
+  res.status(statusCodes.OK).send(customer);
+};
+
+module.exports = { getAllCustomers, createCustomer, getCustomerById };
