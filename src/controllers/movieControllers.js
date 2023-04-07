@@ -12,4 +12,10 @@ const createMovie = async (req, res) => {
   res.status(statusCodes.CREATED).send(movie)
 }
 
-module.exports = { getAllMovies, createMovie }
+const updateMovie = async (req, res) => {
+  const { id } = req.params
+  const movie = await movieServices.update(id, req.body)
+  res.status(200).send(movie)
+}
+
+module.exports = { getAllMovies, createMovie, updateMovie }

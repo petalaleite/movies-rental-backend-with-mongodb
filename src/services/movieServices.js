@@ -20,5 +20,22 @@ const create = async (genreId, title, numberInStock) => {
   return movie
 }
 
+update = async (id, movieBody) => {
+  const { genreId, title, numberInStock } = movieBody
+  const genre = await Genre.findById(genreId)
+  if (!genre) return { status: 400, message: 'Invalid Genre' }
 
-module.exports = { getAll, create }
+  const movie = await Movie.findByIdAndUpdate(id, {
+    title,
+    genre: {
+      _id: genre.id,
+      name: genre.name
+    },
+    numberInStock
+  })
+  if (!movie) return { status: 404, message: 'The movie with the given ID was not found' }
+  return movie
+}
+
+
+module.exports = { getAll, create, update }
