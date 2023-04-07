@@ -18,4 +18,10 @@ const updateMovie = async (req, res) => {
   res.status(200).send(movie)
 }
 
-module.exports = { getAllMovies, createMovie, updateMovie }
+const deleteMovie = async (req, res) => {
+  const { id } = req.params
+  const movie = await movieServices.deleteMovie(id)
+  res.status(statusCodes.OK).send(movie)
+}
+
+module.exports = { getAllMovies, createMovie, updateMovie, deleteMovie }

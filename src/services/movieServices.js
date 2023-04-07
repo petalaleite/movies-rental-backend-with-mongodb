@@ -37,5 +37,11 @@ const update = async (id, movieBody) => {
   return movie
 }
 
+const deleteMovie = async (id) => {
+  const movie = await Movie.findByIdAndRemove(id)
+  if (!movie) return { status: 404, message: 'The movie with the given ID was not found' }
+  return movie
+}
 
-module.exports = { getAll, create, update }
+
+module.exports = { getAll, create, update, deleteMovie }
