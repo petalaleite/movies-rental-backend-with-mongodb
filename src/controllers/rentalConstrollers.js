@@ -6,6 +6,7 @@ const getAllRentals = async (_req, res) => {
   res.status(statusCodes.OK).send(rentals);
 };
 
+
 const createRental = async (req, res) => {
   const { customerId, movieId, rentalFee } = req.body;
   const rental = await rentalServices.create(customerId, movieId, rentalFee);
@@ -13,3 +14,4 @@ const createRental = async (req, res) => {
 };
 
 module.exports = { getAllRentals, createRental };
+
