@@ -1,5 +1,10 @@
 const express = require('express');
-const { getAllRentals, createRental, getRentalById, deleteRental } = require('../controllers/rentalConstrollers');
+const {
+  getAllRentals,
+  createRental,
+  getRentalById,
+  deleteRental,
+} = require('../controllers/rentalConstrollers');
 
 const rentalRouter = express.Router();
 

@@ -18,4 +18,10 @@ const getRentalById = async (req, res) => {
   res.status(statusCodes.OK).send(rental);
 };
 
-module.exports = { getAllRentals, createRental, getRentalById };
+const deleteRental = async (req, res) => {
+  const { id } = req.params;
+  await rentalServices.deleteRental(id);
+  res.status(statusCodes.OK).send('Successful deleted');
+};
+
+module.exports = { getAllRentals, createRental, getRentalById, deleteRental };
