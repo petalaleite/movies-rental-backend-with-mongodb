@@ -1,17 +1,19 @@
 const { Schema, model } = require('mongoose');
+const { genreSchema } = require('./genre');
 
 const Rental = model('Rental', new Schema({
   customer: {
     type: new Schema({
-      fistName: {
+      firstName: {
         type: String,
         required: true,
         minLength: 2,
-        maxLength: 2
       },
-      premiumAccount: {
-        type: Boolean,
-        default: false,
+      lastName: {
+        type: String,
+        required: true,
+        minlength: 2,
+        maxlength: 50
       },
       address: {
         type: String,
@@ -25,29 +27,32 @@ const Rental = model('Rental', new Schema({
         minlength: 5,
         maxlength: 50
       },
-      movie: {
-        type: new Schema({
-          title: {
-            type: String,
-            required: true,
-            trim: true,
-            minlength: 2,
-            maxlength: 255
-          },
-          genre: {
-            type: genreSchema,
-            required: true,
-          },
-          numberInStock: {
-            type: Number,
-            required: true,
-            min: 0,
-            max: 255
-          }
-        })
-      }
     })
+  },
+  movie: {
+    type: new Schema({
+      title: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 2,
+        maxlength: 255
+      },
+    })
+  },
+  dateOut: {
+    type: Date,
+    required: true,
+    default: Date.now
+  },
+  dateReturned: {
+    type: Date,
+    required: false,
+  },
+  rentalFee: {
+    type: Number,
+    min: 1
   }
 }));
 
-module.exports = Rental
+module.exports = Rental;

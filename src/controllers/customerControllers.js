@@ -28,7 +28,7 @@ const editCustomer = async (req, res) => {
   if (!updatedCustomer) return res.status(statusCodes.NOT_FOUND).send(INVALID_ID_MESSAGE);
   res.status(statusCodes.OK).send(updatedCustomer);
 };
-cd 
+
 const deleteCustomer = async (req, res) => {
   const { id } = req.params;
   const customer = await customerServices.deleteCustomer(id);
