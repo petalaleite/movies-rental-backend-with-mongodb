@@ -13,9 +13,9 @@ const create = async (genreId, title, numberInStock) => {
     title,
     genre: {
       _id: genre._id,
-      name: genre.name
+      name: genre.name,
     },
-    numberInStock
+    numberInStock,
   });
   return movie;
 };
@@ -29,9 +29,9 @@ const update = async (id, movieBody) => {
     title,
     genre: {
       _id: genre.id,
-      name: genre.name
+      name: genre.name,
     },
-    numberInStock
+    numberInStock,
   });
   if (!movie) return { status: 404, message: 'The movie with the given ID was not found' };
   return movie;

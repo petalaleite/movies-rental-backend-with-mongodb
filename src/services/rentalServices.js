@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 const { Types } = require('mongoose');
 const Customer = require('../models/customer');
 const Rental = require('../models/rental');
@@ -18,15 +19,10 @@ const create = async (customerId, movieId, rentalFee) => {
   if (movie.numberInStock === 0) return { message: 'Movie not in stock' };
   const rental = await Rental.create({
     customer: {
-      _id: customer.id,
-      firstName: customer.firstName,
-      lastName: customer.lastName,
-      address: customer.address,
-      phone: customer.phone,
+      ...customer,
     },
     movie: {
-      _id: movie._id,
-      title: movie.title,
+      ...movie,
     },
     rentalFee,
   });
@@ -35,4 +31,9 @@ const create = async (customerId, movieId, rentalFee) => {
   return rental;
 };
 
-module.exports = { getAll, create };
+const getById = async (id) => {
+  const rental = await Rental.findById(id);
+  return rental;
+};
+
+module.exports = { getAll, create, getById };
