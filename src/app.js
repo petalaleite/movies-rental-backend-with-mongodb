@@ -4,6 +4,7 @@ const movieRoutes = require('./routes/movie.routes');
 const customerRouter = require('./routes/customer.routes');
 const rentalRouter = require('./routes/rental.routes');
 const userRouter = require('./routes/user.routes');
+const loginRouter = require('./routes/login.routes');
 
 const app = express();
 
@@ -13,5 +14,6 @@ app.use('/movies', movieRoutes);
 app.use('/customers', customerRouter);
 app.use('/rentals', rentalRouter);
 app.use('/register', userRouter);
+app.use('/login', loginRouter);
 
 module.exports = app;

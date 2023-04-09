@@ -12,4 +12,4 @@ function generateToken(user) {
   return token;
 }
 
-module.exports = { secret, jwtConfig, generateToken };
+module.exports = { secret, jwtConfig, generateToken }; 
