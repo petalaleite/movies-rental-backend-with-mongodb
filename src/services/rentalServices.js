@@ -43,4 +43,23 @@ const deleteRental = async (id) => {
   return rental;
 };
 
-module.exports = { getAll, create, getById, deleteRental };
+const edit = async (id, rentalUpdate) => {
+  const { customerId, movieId, rentalFee } = rentalUpdate;
+  const customer = await Customer.findById(customerId);
+  if (!Types.ObjectId.isValid(customerId)) return { message: 'Invalid ID' };
+  if (!customer) return { message: 'Invalid customer.' };
+  const movie = await Movie.findById(movieId);
+
+  const rental = await Rental.findByIdAndUpdate(id, {
+    customer: {
+      ...customer,
+    },
+    movie: {
+      ...movie,
+    },
+    rentalFee,
+  });
+  return rental;
+};
+
+module.exports = { getAll, create, getById, deleteRental, edit };

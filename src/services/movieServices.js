@@ -20,7 +20,7 @@ const create = async (genreId, title, numberInStock) => {
   return movie;
 };
 
-const update = async (id, movieBody) => {
+const edit = async (id, movieBody) => {
   const { genreId, title, numberInStock } = movieBody;
   const genre = await Genre.findById(genreId);
   if (!genre) return { status: 400, message: 'Invalid Genre' };
@@ -49,4 +49,4 @@ const getById = async (id) => {
   return movie;
 };
 
-module.exports = { getAll, create, update, deleteMovie, getById };
+module.exports = { getAll, create, edit, deleteMovie, getById };
