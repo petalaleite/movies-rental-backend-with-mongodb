@@ -13,7 +13,7 @@ app.use('/genres', genreRouter);
 app.use('/movies', movieRoutes);
 app.use('/customers', customerRouter);
 app.use('/rentals', rentalRouter);
-app.use('/register', userRouter);
+app.use('/user', userRouter);
 app.use('/login', loginRouter);
 
 module.exports = app;

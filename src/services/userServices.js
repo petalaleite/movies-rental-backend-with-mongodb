@@ -13,4 +13,9 @@ const register = async (user) => {
   return createdUser;
 };
 
-module.exports = { register };
+const deleteUser = async (id) => {
+  const user = await User.findByIdAndDelete(id);
+  return user;
+};
+
+module.exports = { register, deleteUser };
