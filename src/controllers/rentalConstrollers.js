@@ -6,4 +6,29 @@ const getAllRentals = async (_req, res) => {
   res.status(statusCodes.OK).send(rentals);
 };
 
-module.exports = { getAllRentals };
+const createRental = async (req, res) => {
+  const { customerId, movieId, rentalFee } = req.body;
+  const rental = await rentalServices.create(customerId, movieId, rentalFee);
+  res.status(statusCodes.CREATED).send(rental);
+};
+
+const getRentalById = async (req, res) => {
+  const { id } = req.params;
+  const rental = await rentalServices.getById(id);
+  res.status(statusCodes.OK).send(rental);
+};
+
+const rentalUpdate = async (req, res) => {
+  const { id } = req.params;
+  const { body } = req;
+  const rental = await rentalServices.edit(id, body);
+  res.status(statusCodes.OK).send(rental);
+};
+
+const deleteRental = async (req, res) => {
+  const { id } = req.params;
+  await rentalServices.deleteRental(id);
+  res.status(statusCodes.OK).send('Successful deleted');
+};
+
+module.exports = { getAllRentals, createRental, getRentalById, deleteRental, rentalUpdate };

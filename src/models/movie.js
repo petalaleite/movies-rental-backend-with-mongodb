@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose')
-const { genreSchema } = require('./genre')
+const { Schema, model } = require('mongoose');
+const { genreSchema } = require('./genre');
 
 const Movie = model('Movies', new Schema({
   title: {
@@ -7,7 +7,7 @@ const Movie = model('Movies', new Schema({
     required: true,
     trim: true,
     minlength: 2,
-    maxlength: 255
+    maxlength: 255,
   },
   genre: {
     type: genreSchema,
@@ -17,8 +17,8 @@ const Movie = model('Movies', new Schema({
     type: Number,
     required: true,
     min: 0,
-    max: 255
-  }
-}))
+    max: 255,
+  },
+}));
 
-module.exports = Movie
+module.exports = Movie;

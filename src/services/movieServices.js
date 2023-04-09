@@ -13,14 +13,14 @@ const create = async (genreId, title, numberInStock) => {
     title,
     genre: {
       _id: genre._id,
-      name: genre.name
+      name: genre.name,
     },
-    numberInStock
+    numberInStock,
   });
   return movie;
 };
 
-const update = async (id, movieBody) => {
+const edit = async (id, movieBody) => {
   const { genreId, title, numberInStock } = movieBody;
   const genre = await Genre.findById(genreId);
   if (!genre) return { status: 400, message: 'Invalid Genre' };
@@ -29,9 +29,9 @@ const update = async (id, movieBody) => {
     title,
     genre: {
       _id: genre.id,
-      name: genre.name
+      name: genre.name,
     },
-    numberInStock
+    numberInStock,
   });
   if (!movie) return { status: 404, message: 'The movie with the given ID was not found' };
   return movie;
@@ -49,4 +49,4 @@ const getById = async (id) => {
   return movie;
 };
 
-module.exports = { getAll, create, update, deleteMovie, getById };
+module.exports = { getAll, create, edit, deleteMovie, getById };
