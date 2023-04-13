@@ -6,13 +6,14 @@ const {
   deleteMovie,
   getMovieById,
 } = require('../controllers/movieControllers');
+const { validateID } = require('../middlewares/idValidation');
 
 const movieRoutes = express.Router();
 
 movieRoutes.get('/', getAllMovies);
 movieRoutes.post('/', createMovie);
-movieRoutes.put('/:id', updateMovie);
-movieRoutes.delete('/:id', deleteMovie);
-movieRoutes.get('/:id', getMovieById);
+movieRoutes.put('/:id', validateID, updateMovie);
+movieRoutes.delete('/:id', validateID, deleteMovie);
+movieRoutes.get('/:id', validateID, getMovieById);
 
 module.exports = movieRoutes;

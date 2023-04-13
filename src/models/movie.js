@@ -10,7 +10,7 @@ const Movie = model('Movies', new Schema({
     maxlength: 255,
   },
   genre: {
-    type: genreSchema,
+    type: Array(genreSchema),
     required: true,
   },
   numberInStock: {
