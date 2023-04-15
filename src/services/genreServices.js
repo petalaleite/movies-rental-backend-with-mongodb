@@ -1,7 +1,6 @@
 const { Genre } = require('../models/genre');
 
 const create = async (name) => {
-  // check if genre already exists. (throw error if true)
   const newGenre = await Genre.create({ name });
   return newGenre;
 };
@@ -12,7 +11,6 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
-  // checks if its a valid id, checks if the genre exist
   const genre = await Genre.findById(id);
   return genre;
 };

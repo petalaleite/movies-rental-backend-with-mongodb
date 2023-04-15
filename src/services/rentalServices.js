@@ -1,5 +1,3 @@
-/* eslint-disable no-plusplus */
-const { Types } = require('mongoose');
 const Customer = require('../models/customer');
 const Rental = require('../models/rental');
 const Movie = require('../models/movie');
@@ -12,7 +10,6 @@ const getAll = async () => {
 
 const create = async (customerId, movieId, rentalFee) => {
   const customer = await Customer.findById(customerId);
-  if (!Types.ObjectId.isValid(customerId)) return { message: 'Invalid ID' };
   if (!customer) return { message: 'Invalid customer.' };
 
   const movie = await Movie.findById(movieId);
@@ -26,19 +23,17 @@ const create = async (customerId, movieId, rentalFee) => {
     },
     rentalFee,
   });
-  movie.numberInStock--;
+  movie.numberInStock -= 1;
   movie.save();
   return rental;
 };
 
 const getById = async (id) => {
-  if (!Types.ObjectId.isValid(id)) return { message: 'Invalid ID' };
   const rental = await Rental.findById(id);
   return rental;
 };
 
 const deleteRental = async (id) => {
-  if (!Types.ObjectId.isValid(id)) return { message: 'Invalid ID' };
   const rental = await Rental.findByIdAndRemove(id);
   return rental;
 };
@@ -46,7 +41,6 @@ const deleteRental = async (id) => {
 const edit = async (id, rentalUpdate) => {
   const { customerId, movieId, rentalFee } = rentalUpdate;
   const customer = await Customer.findById(customerId);
-  if (!Types.ObjectId.isValid(customerId)) return { message: 'Invalid ID' };
   if (!customer) return { message: 'Invalid customer.' };
   const movie = await Movie.findById(movieId);
 
