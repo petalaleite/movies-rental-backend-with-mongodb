@@ -1,3 +1,4 @@
+const { validateMovie } = require('../middlewares/validations');
 const { movieServices } = require('../services');
 const statusCodes = require('../Utils/StatusCodes');
 
@@ -8,6 +9,8 @@ const getAllMovies = async (_req, res) => {
 
 const createMovie = async (req, res) => {
   const { title, genreId, numberInStock } = req.body;
+  const { error } = validateMovie(req.body);
+  if (error) return res.status(statusCodes.BAD_REQUEST).json({ message: error.message });
   const movie = await movieServices.create(genreId, title, numberInStock);
   res.status(statusCodes.CREATED).send(movie);
 };

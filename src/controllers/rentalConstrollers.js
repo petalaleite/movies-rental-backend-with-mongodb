@@ -1,5 +1,6 @@
 const { rentalServices } = require('../services');
 const statusCodes = require('../Utils/StatusCodes');
+const { validateRetail } = require('../Utils/validations');
 
 const getAllRentals = async (_req, res) => {
   const rentals = await rentalServices.getAll();
@@ -8,6 +9,9 @@ const getAllRentals = async (_req, res) => {
 
 const createRental = async (req, res) => {
   const { customerId, movieId, rentalFee } = req.body;
+  const { error } = validateRetail(req.body);
+  if (error) return res.status(statusCodes.BAD_REQUEST).json({ message: error.message });
+
   const rental = await rentalServices.create(customerId, movieId, rentalFee);
   res.status(statusCodes.CREATED).send(rental);
 };
