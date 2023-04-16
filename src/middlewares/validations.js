@@ -1,4 +1,5 @@
-const Joi = require('../Utils/validations');
+// const Joi = require('../Utils/validations');
+const Joi = require('joi');
 const statusCodes = require('../Utils/StatusCodes');
 
 const validateGenre = (req, res, next) => {
@@ -9,19 +10,21 @@ const validateGenre = (req, res, next) => {
   next();
 };
 
-const validateMovie = (req, res, next) => {
-  const { body } = req;
-  const { error } = Joi.movie.validate(body);
+// const validateUser = (req, res, next) => {
+//   const { body } = req;
+//   const { error } = Joi.user.validate(body);
+//   if (error) return res.status(statusCodes.BAD_REQUEST).json({ message: error.message });
+//   next();
+// };
 
-  if (error) return res.status(statusCodes.BAD_REQUEST).json({ message: error.message });
-  next();
-};
+// const validateUser = (user) => {
+//   const schema = Joi.object({
+//     name: Joi.string().min(2).required(),
+//     email: Joi.string().email().required(),
+//     password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
+//     role: Joi.string().required(),
+//   });
+//   return Joi.validate(user, schema);
+// };
 
-const validateUser = (req, res, next) => {
-  const { body } = req;
-  const { error } = Joi.schema.validate(body);
-  if (error) return res.status(statusCodes.BAD_REQUEST).json({ message: error.message });
-  next();
-};
-
-module.exports = { validateGenre, validateMovie, validateUser };
+module.exports = { validateGenre }; // validateUser };

@@ -6,7 +6,7 @@ const { validateUser } = require('../middlewares/validations');
 
 const userRouter = express.Router();
 
-userRouter.post('/register', validateUser, registerUser);
+userRouter.post('/register', registerUser);
 userRouter.delete('/:id', [validateToken, admin], deleteUser);
 
 module.exports = userRouter;

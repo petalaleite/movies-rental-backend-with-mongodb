@@ -7,12 +7,12 @@ const {
   getMovieById,
 } = require('../controllers/movieControllers');
 const { validateID } = require('../middlewares/idValidation');
-const { validateMovie } = require('../middlewares/validations');
+// const { validateMovie } = require('../middlewares/validations');
 
 const movieRoutes = express.Router();
 
 movieRoutes.get('/', getAllMovies);
-movieRoutes.post('/', validateMovie, createMovie);
+movieRoutes.post('/', createMovie);
 movieRoutes.put('/:id', validateID, updateMovie);
 movieRoutes.delete('/:id', validateID, deleteMovie);
 movieRoutes.get('/:id', validateID, getMovieById);

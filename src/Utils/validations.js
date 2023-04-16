@@ -4,11 +4,14 @@ const genre = Joi.object({
   name: Joi.string().min(2).required(),
 });
 
-const movie = Joi.object({
-  title: Joi.string().min(2).max(255).required(),
-  genreId: Joi.string().required(),
-  numberInStock: Joi.number().min(0).required(),
-});
+const validateMovie = (movie) => {
+  const schema = Joi.object({
+    title: Joi.string().min(2).max(255).required(),
+    genreId: Joi.string().required(),
+    numberInStock: Joi.number().min(0).required(),
+  });
+  return schema.validate(movie);
+};
 
 const user = Joi.object({
   name: Joi.string().min(2).required(),
@@ -17,4 +20,4 @@ const user = Joi.object({
   role: Joi.string().required(),
 });
 
-module.exports = { genre, movie, user };
+module.exports = { genre, user, validateMovie };
