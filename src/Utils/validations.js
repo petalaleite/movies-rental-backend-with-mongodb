@@ -1,8 +1,11 @@
 const Joi = require('joi');
 
-const genre = Joi.object({
-  name: Joi.string().min(2).required(),
-});
+const validateGenre = (genre) => {
+  const schema = Joi.object({
+    name: Joi.string().min(2).required(),
+  });
+  return schema.validate(genre);
+};
 
 const validateMovie = (movie) => {
   const schema = Joi.object({
@@ -20,4 +23,4 @@ const user = Joi.object({
   role: Joi.string().required(),
 });
 
-module.exports = { genre, user, validateMovie };
+module.exports = { validateGenre, user, validateMovie };

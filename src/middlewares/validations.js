@@ -1,15 +1,3 @@
-// const Joi = require('../Utils/validations');
-const Joi = require('joi');
-const statusCodes = require('../Utils/StatusCodes');
-
-const validateGenre = (req, res, next) => {
-  const { body } = req;
-  const { error } = Joi.genre.validate(body);
-
-  if (error) return res.status(statusCodes.BAD_REQUEST).json({ message: error.message });
-  next();
-};
-
 // const validateUser = (req, res, next) => {
 //   const { body } = req;
 //   const { error } = Joi.user.validate(body);
@@ -26,5 +14,3 @@ const validateGenre = (req, res, next) => {
 //   });
 //   return Joi.validate(user, schema);
 // };
-
-module.exports = { validateGenre }; // validateUser };

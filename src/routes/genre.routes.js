@@ -7,11 +7,10 @@ const {
   removeGenre,
 } = require('../controllers/genreControllers');
 const { validateID } = require('../middlewares/idValidation');
-const { validateGenre } = require('../middlewares/validations');
 
 const genreRouter = express.Router();
 
-genreRouter.post('/', validateGenre, createGenre);
+genreRouter.post('/', createGenre);
 genreRouter.get('/', getAllGenres);
 genreRouter.get('/:id', validateID, getGenreById);
 genreRouter.put('/:id', validateID, updateGenre);

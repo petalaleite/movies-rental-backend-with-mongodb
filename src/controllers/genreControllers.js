@@ -1,9 +1,13 @@
+const { validateGenre } = require('../Utils/validations');
 const { serviceGenre } = require('../services');
+const statusCodes = require('../Utils/StatusCodes');
 
 const INVALID_ID_MESSAGE = 'The genre with the given ID does not exist.';
 
 const createGenre = async (req, res) => {
   const { name } = req.body;
+  const { error } = validateGenre(req.body);
+  if (error) return res.status(statusCodes.BAD_REQUEST).json({ message: error.message });
   const newGenre = await serviceGenre.create(name);
   res.status(201).send(newGenre);
 };
