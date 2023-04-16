@@ -1,5 +1,5 @@
 A retail movies API project developed using JavaScript, Express, MongoDG and Mongoose.
-This project only purpose is to reinforce and practice the knowledge acquired during my BackEnd classes.
+This project only purpose is to reinforce and practice the knowledge acquired during my backend classes and learning journey to be a software engineer.
 
 ## Build With
 <img src='https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white'>
