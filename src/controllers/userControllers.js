@@ -2,11 +2,15 @@ const User = require('../models/user');
 const { userServices } = require('../services');
 const { generateToken } = require('../Utils/JWT');
 const statusCodes = require('../Utils/StatusCodes');
+const { validateUser } = require('../Utils/validations');
 
 const INVALID_ID_MESSAGE = 'The user with the given ID does not exist';
 
 const registerUser = async (req, res) => {
   const { email } = req.body;
+  const { error } = validateUser(req.body);
+  if (error) return res.status(statusCodes.BAD_REQUEST).json({ message: error.message });
+
   const user = await User.findOne({ email });
   if (user) {
     return res.status(statusCodes.BAD_REQUEST).json({ message: 'User already registered.' });
