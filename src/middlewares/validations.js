@@ -17,4 +17,11 @@ const validateMovie = (req, res, next) => {
   next();
 };
 
-module.exports = { validateGenre, validateMovie };
+const validateUser = (req, res, next) => {
+  const { body } = req;
+  const { error } = Joi.schema.validate(body);
+  if (error) return res.status(statusCodes.BAD_REQUEST).json({ message: error.message });
+  next();
+};
+
+module.exports = { validateGenre, validateMovie, validateUser };
