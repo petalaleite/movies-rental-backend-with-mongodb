@@ -37,4 +37,13 @@ const validateCustomer = (customer) => {
   return schema.validate(customer);
 };
 
-module.exports = { validateGenre, validateUser, validateMovie, validateCustomer };
+const validateRetail = (retail) => {
+  const schema = Joi.object({
+    customerId: Joi.string().required(),
+    movieId: Joi.string().required(),
+    rentalFee: Joi.number().min(1).required(),
+  });
+  return schema.validate(retail);
+};
+
+module.exports = { validateGenre, validateUser, validateMovie, validateCustomer, validateRetail };
