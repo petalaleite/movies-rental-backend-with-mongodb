@@ -26,4 +26,15 @@ const validateUser = (user) => {
   return schema.validate(user);
 };
 
-module.exports = { validateGenre, validateUser, validateMovie };
+const validateCustomer = (customer) => {
+  const schema = Joi.object({
+    firstName: Joi.string().min(2).max(50).required(),
+    lastName: Joi.string().min(2).max(50).required(),
+    premiumAccount: Joi.boolean().required(),
+    address: Joi.string().min(10).max(255).required(),
+    phone: Joi.string().required(),
+  });
+  return schema.validate(customer);
+};
+
+module.exports = { validateGenre, validateUser, validateMovie, validateCustomer };

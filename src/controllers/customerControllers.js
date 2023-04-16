@@ -1,5 +1,6 @@
 const { customerServices } = require('../services');
 const statusCodes = require('../Utils/StatusCodes');
+const { validateCustomer } = require('../Utils/validations');
 
 const INVALID_ID_MESSAGE = 'The customer with the given ID does not exist';
 
@@ -10,6 +11,9 @@ const getAllCustomers = async (_req, res) => {
 
 const createCustomer = async (req, res) => {
   const { body } = req;
+  const { error } = validateCustomer(req.body);
+  if (error) return res.status(statusCodes.BAD_REQUEST).json({ message: error.message });
+
   const newCustomer = await customerServices.create(body);
   res.status(statusCodes.CREATED).send(newCustomer);
 };
