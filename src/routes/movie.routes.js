@@ -7,7 +7,6 @@ const {
   getMovieById,
 } = require('../controllers/movieControllers');
 const { validateID } = require('../middlewares/idValidation');
-// const { validateMovie } = require('../middlewares/validations');
 
 const movieRoutes = express.Router();
 
