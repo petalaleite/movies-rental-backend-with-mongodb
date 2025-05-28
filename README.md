@@ -1,4 +1,4 @@
-A retail movies API project developed using JavaScript, Express, MongoDG and Mongoose.
+A retail movies API project developed using JavaScript, Express, MongoDB and Mongoose.
 This project only purpose is to reinforce and practice the knowledge acquired during my backend classes and learning journey to be a software engineer.
 
 ## Build With
